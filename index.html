@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Santosh Kumar Shaw — Crystal plasticity &amp; creep–fatigue</title>
+<meta name="description" content="Research Scholar at IIT Delhi working on crystal plasticity, finite element analysis and creep–fatigue interaction in nickel superalloys.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="rail">
+  <a class="mark" href="index.html">
+    <span class="mark-name">Santosh<br>Kumar Shaw</span>
+    <span class="mark-role">Research Scholar<br>Applied Mechanics, IIT Delhi</span>
+  </a>
+  <nav aria-label="Sections">
+    <ul>
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="code.html">Code</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <p class="rail-foot">
+    Indian Institute of<br>Technology Delhi<br>
+    <a href="mailto:amz228601@iitd.ac.in">amz228601@iitd.ac.in</a>
+  </p>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <img class="lattice" src="assets/lattice.svg" alt="An edge dislocation: an extra half-plane of atoms terminating on the slip plane, with the Burgers vector b marked.">
+    <p class="lattice-note">
+      An edge dislocation — one extra half-plane of atoms ending on the slip plane.
+      Plasticity is what happens when enough of these move. My work is counting them,
+      and predicting the point where a component stops coming back.
+    </p>
+
+    <p class="eyebrow">Crystal plasticity · Creep–fatigue · Multiscale modelling</p>
+    <h1>Engineering the future of materials</h1>
+    <p class="lede">
+      I am a Research Scholar at IIT Delhi. My research covers crystal plasticity,
+      finite element analysis and creep–fatigue interaction — decoding the mechanics of
+      superalloys with frameworks like MOOSE to engineer a stronger, more resilient future.
+      The work is multiscale: the goal is to bridge the gap between the two scales.
+    </p>
+
+    <ul class="links">
+      <li><a href="mailto:amz228601@iitd.ac.in">amz228601[at]iitd.ac.in</a></li>
+      <li><a href="https://scholar.google.com/citations?user=Wm7uCdcAAAAJ&amp;hl=en">Google Scholar</a></li>
+      <li><a href="https://www.linkedin.com/in/santosh-shaw-a13744275/">LinkedIn</a></li>
+      <li><a href="https://github.com/SKS-CP">GitHub</a></li>
+    </ul>
+  </section>
+
+  <section class="band" aria-labelledby="research">
+    <p class="eyebrow" id="research">Research</p>
+
+    <article class="thread">
+      <span class="thread-tag is-heat">Additive manufacturing · 850 °C</span>
+      <h2>High-temperature plasticity of LPBF 316L stainless steel</h2>
+      <p>
+        How laser powder bed fusion (LPBF) 316L behaves once it is taken to temperature —
+        and how much of that behaviour is inherited from the way it was printed.
+      </p>
+
+      <ul class="findings">
+        <li>
+          <strong>High-temperature deformation</strong>
+          Systematic study of the mechanical behaviour of LPBF-fabricated 316L stainless
+          steel at an elevated temperature of 850 °C.
+        </li>
+        <li>
+          <strong>Anisotropy and build orientation</strong>
+          Uniaxial tensile response compared along vertical (parallel to build) and
+          horizontal (perpendicular to build) orientations to isolate the effect of build direction.
+        </li>
+        <li>
+          <strong>Strain-rate sensitivity</strong>
+          Response across multiple strain rates, revealing a transition from strain softening
+          at low rates to strain hardening at higher rates.
+        </li>
+        <li>
+          <strong>Microstructural mechanisms</strong>
+          Deformation shifts from dislocation slip and twinning at room temperature to
+          dynamic recrystallisation at elevated temperature.
+        </li>
+      </ul>
+
+      <ul class="links">
+        <li><a href="https://doi.org/10.1016/j.addma.2026.105115">Read the paper — Additive Manufacturing</a></li>
+      </ul>
+
+      <div class="figs">
+        <figure>
+          <img src="images/lpbf-01.jpg" alt="Microstructure of LPBF 316L stainless steel." loading="lazy">
+          <figcaption>LPBF 316L microstructure.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/lpbf-02.jpg" alt="Stress–strain response at 850 °C across strain rates." loading="lazy">
+          <figcaption>Tensile response at 850 °C across strain rates.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/lpbf-03.jpg" alt="Comparison of vertical and horizontal build orientations." loading="lazy">
+          <figcaption>Vertical vs. horizontal build orientation.</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <article class="thread">
+      <span class="thread-tag is-slip">Nickel superalloys · CPFEM</span>
+      <h2>Creep–fatigue interaction in turbine blades</h2>
+      <p>
+        Turbine blades fail where creep and fatigue act together. A dislocation
+        density-based crystal plasticity model, run in MOOSE, is used to find where that
+        happens and how long it takes.
+      </p>
+
+      <div class="figs">
+        <figure>
+          <img src="images/blade-failure-modes.jpg" alt="Diagram of failure modes in a turbine blade." loading="lazy">
+          <figcaption>Failure modes in turbine blades.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/blade-failure-locations.jpg" alt="Probable failure locations on a turbine blade." loading="lazy">
+          <figcaption>
+            Probable locations of blade failure due to creep–fatigue interaction, corrosion,
+            oxidation and other degradation mechanisms.
+          </figcaption>
+        </figure>
+        <figure>
+          <img src="images/rve-validation.jpg" alt="RVE-level validation of the creep–fatigue model." loading="lazy">
+          <figcaption>Validation at the RVE level of creep–fatigue interaction.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/blade-failure-sites.jpg" alt="Sites where the blade generally fails." loading="lazy">
+          <figcaption>Sites where the blade generally fails.</figcaption>
+        </figure>
+      </div>
+
+      <ul class="links">
+        <li><a href="code.html">Model and data on GitHub</a></li>
+        <li><a href="publications.html">Related publication</a></li>
+      </ul>
+    </article>
+  </section>
+
+</main>
+<script src="assets/site.js"></script>
+</body>
+</html>

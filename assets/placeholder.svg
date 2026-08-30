@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Figure not yet added">
+  <rect width="400" height="300" fill="#f7f8f6"/>
+  <text x="200" y="146" text-anchor="middle" fill="#9aa29a"
+        font-family="ui-monospace, monospace" font-size="13" letter-spacing="1.5">FIGURE</text>
+  <text x="200" y="168" text-anchor="middle" fill="#b3bab3"
+        font-family="ui-monospace, monospace" font-size="10" letter-spacing="1">drop the image into /images</text>
+</svg>
