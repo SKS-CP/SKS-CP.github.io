@@ -5,15 +5,15 @@
    ========================================================================== */
 
 :root {
-  --bar:      #10151a;   /* top navigation - cool near-black */
-  --bar-hi:   #2b333b;
-  --banner:   #0d4f6c;   /* deep petrol blue title band */
-  --text:     #1b1f23;
-  --muted:    #5b6469;
-  --line:     #dde0e2;
-  --link:     #a8481f;   /* burnt sienna */
-  --link-hover: #6f2d10;
-  --note:     #7a3410;   /* bold italic note */
+  --bar:        #6b0f16;   /* top navigation - deep maroon */
+  --bar-hi:     #8a1620;
+  --banner:     #9b1b23;   /* crimson title band */
+  --text:       #1c1c1c;
+  --muted:      #6b6260;
+  --line:       #e3dcdc;
+  --link:       #9b1b23;   /* links pick up the banner red */
+  --link-hover: #5f0f14;
+  --note:       #6d1319;   /* bold italic note */
   --wrap:     1122px;   /* 1082px of content once padding is removed */
   --font: Roboto, Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
