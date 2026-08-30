@@ -5,7 +5,7 @@ use `.png`, change the `src` in the HTML to match.
 
 | Filename                       | Used on   | What it shows                                |
 |--------------------------------|-----------|-----------------------------------------------|
-| `photo.png`                    | Home      | Your photograph (portrait, about 400 px wide) |
+| `photo.jpg`                    | Home      | Your photograph (portrait, about 400 px wide) |
 | `blade-failure-modes.jpg`      | Research  | Failure modes in turbine blades               |
 | `blade-failure-locations.jpg`  | Research  | Probable blade failure locations              |
 | `rve-validation.jpg`           | Research  | RVE-level validation of creep–fatigue         |
