@@ -14,7 +14,7 @@
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="topbar">
-  <div class="wrap">
+  <div class="topbar-inner">
     <nav aria-label="Main">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -26,6 +26,12 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
+    <button class="search-toggle" type="button" aria-expanded="false"
+            aria-controls="site-search" aria-label="Search this site"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></button>
+  </div>
+  <div class="search-panel" id="site-search">
+    <input type="search" placeholder="Search this site" aria-label="Search this site">
+    <ul class="search-results"></ul>
   </div>
 </div>
 
@@ -61,6 +67,7 @@
   </div>
 </footer>
 
+<script src="assets/search-index.js"></script>
 <script src="assets/site.js"></script>
 </body>
 </html>

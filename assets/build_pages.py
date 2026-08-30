@@ -1,4 +1,7 @@
+import html
+import json
 import os
+import re
 
 OUT = "/home/claude/site2"
 
@@ -14,6 +17,14 @@ NAV = [
 
 FONTS = ("https://fonts.googleapis.com/css2?"
          "family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap")
+
+SEARCH_ICON = (
+    '<svg viewBox="0 0 24 24" aria-hidden="true">'
+    '<path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16'
+    'c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0'
+    'C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>'
+    '</svg>'
+)
 
 
 def page(slug, title, description, body):
@@ -38,12 +49,18 @@ def page(slug, title, description, body):
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="topbar">
-  <div class="wrap">
+  <div class="topbar-inner">
     <nav aria-label="Main">
       <ul>
 {items}
       </ul>
     </nav>
+    <button class="search-toggle" type="button" aria-expanded="false"
+            aria-controls="site-search" aria-label="Search this site">{SEARCH_ICON}</button>
+  </div>
+  <div class="search-panel" id="site-search">
+    <input type="search" placeholder="Search this site" aria-label="Search this site">
+    <ul class="search-results"></ul>
   </div>
 </div>
 
@@ -65,6 +82,7 @@ def page(slug, title, description, body):
   </div>
 </footer>
 
+<script src="assets/search-index.js"></script>
 <script src="assets/site.js"></script>
 </body>
 </html>
@@ -76,30 +94,32 @@ HOME = '''
       <div class="about-text">
         <h2>About me</h2>
         <p>
-          I am a Research Scholar at the Department of Applied Mechanics, IIT Delhi. My
+          I am a Research Scholar at the Department of Applied Mechanics at IIT Delhi. My
           research focuses on crystal plasticity, finite element analysis and
-          creep&ndash;fatigue interaction. I work on decoding the mechanics of superalloys
-          using frameworks such as MOOSE, with the aim of engineering a stronger, more
-          resilient future. The work is multiscale: the goal is to bridge the gap between
-          the two scales.
+          creep&ndash;fatigue interaction. I work on decoding the complex mechanics of
+          nickel-based superalloys using advanced frameworks such as MOOSE, to engineer a
+          stronger and more resilient future. My work is multiscale, and the aim is to
+          bridge the gap between the two scales.
         </p>
 
         <p>My current research interests include problems in the following areas:</p>
         <ul class="interests">
-          <li>Dislocation density-based crystal plasticity (CPFEM)</li>
+          <li>Dislocation density-based crystal plasticity</li>
           <li>Creep&ndash;fatigue interaction in nickel-based superalloys</li>
           <li>Multiscale materials modelling</li>
           <li>High-temperature deformation of additively manufactured metals</li>
-          <li>Life prediction and damage modelling</li>
+          <li>Damage modelling and life prediction</li>
         </ul>
 
         <p>My CV may be found <a href="files/cv.pdf">here</a>.</p>
 
         <p>
-          <strong>Contact:</strong> Research Scholar Room 4A/14, Block IV, Dept. of Applied
-          Mechanics, IIT Delhi, Hauz Khas, New Delhi 110016
+          <strong>Contact:</strong> Room 4A/14, Block IV, IIT Delhi, Hauz Khas,
+          New Delhi 110016
         </p>
+
         <p>Email: <a href="mailto:amz228601@iitd.ac.in">amz228601@iitd.ac.in</a></p>
+
         <p class="inline-links">
           <a href="https://scholar.google.com/citations?user=Wm7uCdcAAAAJ&amp;hl=en">Google Scholar</a>
           <a href="https://www.linkedin.com/in/santosh-shaw-a13744275/">Linkedin</a>
@@ -107,7 +127,7 @@ HOME = '''
         </p>
 
         <p class="callout">
-          Interested in the models or the data behind the papers? Everything is on
+          If you would like the models or the data behind the papers, please see
           <a href="software.html">Software</a>.
         </p>
       </div>
@@ -140,12 +160,12 @@ BIO = '''
       immobile dislocation populations on each slip system. At the upper scale, that model
       is driven through creep&ndash;fatigue load cycles in a finite element setting to
       predict where a turbine blade accumulates damage and how long it survives. The
-      implementation is built on MOOSE.
+      implementation is built on the MOOSE framework.
     </p>
 
     <h3>Skills and tools</h3>
     <ul class="interests">
-      <li>MOOSE framework, finite element implementation of constitutive models</li>
+      <li>MOOSE framework; finite element implementation of constitutive models</li>
       <li>Crystal plasticity, continuum plasticity, damage and life prediction</li>
       <li>C++, Python, high-performance and parallel computing</li>
       <li>Post-processing and visualisation of large simulation datasets</li>
@@ -296,10 +316,7 @@ SOFTWARE = '''
     </p>
     <p><a href="https://github.com/SKS-CP/CFI-CPFEM">https://github.com/SKS-CP/CFI-CPFEM</a></p>
 
-    <p>
-      All repositories:
-      <a href="https://github.com/SKS-CP">https://github.com/SKS-CP</a>
-    </p>
+    <p>All repositories: <a href="https://github.com/SKS-CP">https://github.com/SKS-CP</a></p>
 '''
 
 CONTACT = '''
@@ -323,26 +340,40 @@ CONTACT = '''
 '''
 
 PAGES = [
-    ("index.html", "Santosh Kumar Shaw — Applied Mechanics, IIT Delhi",
+    ("index.html", "Home", "Santosh Kumar Shaw — Applied Mechanics, IIT Delhi",
      "Research Scholar at the Department of Applied Mechanics, IIT Delhi, working on "
      "crystal plasticity and creep-fatigue interaction in nickel superalloys.", HOME),
-    ("bio-sketch.html", "Bio-sketch — Santosh Kumar Shaw",
+    ("bio-sketch.html", "Bio-sketch", "Bio-sketch — Santosh Kumar Shaw",
      "Education, research summary and technical skills.", BIO),
-    ("research.html", "Research — Santosh Kumar Shaw",
+    ("research.html", "Research", "Research — Santosh Kumar Shaw",
      "Creep-fatigue interaction in nickel superalloy turbine blades and high-temperature "
      "plasticity of LPBF 316L stainless steel.", RESEARCH),
-    ("publications.html", "Publications — Santosh Kumar Shaw",
+    ("publications.html", "Publications", "Publications — Santosh Kumar Shaw",
      "Journal articles and preprints.", PUBLICATIONS),
-    ("teaching.html", "Teaching — Santosh Kumar Shaw",
+    ("teaching.html", "Teaching", "Teaching — Santosh Kumar Shaw",
      "Courses supported as a teaching assistant at IIT Delhi.", TEACHING),
-    ("software.html", "Software — Santosh Kumar Shaw",
+    ("software.html", "Software", "Software — Santosh Kumar Shaw",
      "Open crystal plasticity finite element models and supporting data.", SOFTWARE),
-    ("contact.html", "Contact — Santosh Kumar Shaw",
+    ("contact.html", "Contact", "Contact — Santosh Kumar Shaw",
      "Office address, email and phone at the Department of Applied Mechanics, IIT Delhi.",
      CONTACT),
 ]
 
-for slug, title, desc, body in PAGES:
+
+def plain_text(fragment):
+    """Strip tags and collapse whitespace, for the search index."""
+    text = re.sub(r"<[^>]+>", " ", fragment)
+    text = html.unescape(text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+index = []
+for slug, nav_label, title, desc, body in PAGES:
     with open(os.path.join(OUT, slug), "w") as f:
         f.write(page(slug, title, desc, body))
+    index.append({"url": slug, "title": nav_label, "text": plain_text(body)})
     print("wrote", slug)
+
+with open(os.path.join(OUT, "assets", "search-index.js"), "w") as f:
+    f.write("window.SEARCH_INDEX = " + json.dumps(index, indent=1) + ";\n")
+print("wrote assets/search-index.js")
