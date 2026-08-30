@@ -1,27 +1,25 @@
 import os
 
-OUT = "/home/claude/site"
+OUT = "/home/claude/site2"
 
 NAV = [
     ("index.html", "Home"),
+    ("bio-sketch.html", "Bio-sketch"),
+    ("research.html", "Research"),
     ("publications.html", "Publications"),
-    ("code.html", "Code"),
     ("teaching.html", "Teaching"),
+    ("software.html", "Software"),
     ("contact.html", "Contact"),
 ]
 
 FONTS = ("https://fonts.googleapis.com/css2?"
-         "family=Bricolage+Grotesque:opsz,wght@12..96,400..700"
-         "&family=IBM+Plex+Mono:wght@400;500"
-         "&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400"
-         "&display=swap")
+         "family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap")
 
 
 def page(slug, title, description, body):
     items = "\n".join(
-        '      <li><a href="{h}"{cur}>{l}</a></li>'.format(
-            h=href, l=label,
-            cur=' aria-current="page"' if href == slug else "")
+        '        <li><a href="{h}"{cur}>{l}</a></li>'.format(
+            h=href, l=label, cur=' aria-current="page"' if href == slug else "")
         for href, label in NAV
     )
     return f'''<!doctype html>
@@ -39,156 +37,308 @@ def page(slug, title, description, body):
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="rail">
-  <a class="mark" href="index.html">
-    <span class="mark-name">Santosh<br>Kumar Shaw</span>
-    <span class="mark-role">Research Scholar<br>Applied Mechanics, IIT Delhi</span>
-  </a>
-  <nav aria-label="Sections">
-    <ul>
+<div class="topbar">
+  <div class="wrap">
+    <nav aria-label="Main">
+      <ul>
 {items}
-    </ul>
-  </nav>
-  <p class="rail-foot">
-    Indian Institute of<br>Technology Delhi<br>
-    <a href="mailto:amz228601@iitd.ac.in">amz228601@iitd.ac.in</a>
-  </p>
-</header>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<div class="banner">
+  <h1>Santosh Kumar Shaw</h1>
+  <p>Applied Mechanics, IIT Delhi</p>
+</div>
 
 <main id="main">
+  <div class="wrap">
 {body}
+  </div>
 </main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Department of Applied Mechanics, Indian Institute of Technology Delhi,
+       Hauz Khas, New Delhi 110016.</p>
+  </div>
+</footer>
+
 <script src="assets/site.js"></script>
 </body>
 </html>
 '''
 
 
-PUBLICATIONS = '''
-  <p class="eyebrow">Peer-reviewed and preprint</p>
-  <h1>Publications</h1>
-  <p class="lede">Journal articles and preprints, newest first.</p>
+HOME = '''
+    <div class="about">
+      <div class="about-text">
+        <h2>About me</h2>
+        <p>
+          I am a Research Scholar at the Department of Applied Mechanics, IIT Delhi. My
+          research focuses on crystal plasticity, finite element analysis and
+          creep&ndash;fatigue interaction. I work on decoding the mechanics of superalloys
+          using frameworks such as MOOSE, with the aim of engineering a stronger, more
+          resilient future. The work is multiscale: the goal is to bridge the gap between
+          the two scales.
+        </p>
 
-  <ol class="pubs">
-    <li>
-      <h2 class="pub-title">
-        <a href="https://doi.org/10.1016/j.addma.2026.105115">Orientation and strain-rate effects on high-temperature plasticity of 316L stainless steel fabricated by laser powder bed fusion</a>
-      </h2>
-      <p class="pub-meta">
-        Additive Manufacturing &middot;
-        <a href="https://doi.org/10.1016/j.addma.2026.105115">doi:10.1016/j.addma.2026.105115</a> &middot;
-        <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=Wm7uCdcAAAAJ&amp;citation_for_view=Wm7uCdcAAAAJ:u5HHmVD_uO8C">Google Scholar</a>
-      </p>
-    </li>
-    <li>
-      <h2 class="pub-title">
-        <a href="https://arxiv.org/abs/2605.23342">Studying creep–fatigue interaction of nickel-based superalloys using crystal plasticity and an entropy-based life prediction model</a>
-      </h2>
-      <p class="pub-meta">
-        Preprint &middot;
-        <a href="https://arxiv.org/abs/2605.23342">arXiv:2605.23342</a> &middot;
-        <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=Wm7uCdcAAAAJ&amp;citation_for_view=Wm7uCdcAAAAJ:d1gkVwhDpl0C">Google Scholar</a>
-      </p>
-    </li>
-  </ol>
+        <p>My current research interests include problems in the following areas:</p>
+        <ul class="interests">
+          <li>Dislocation density-based crystal plasticity (CPFEM)</li>
+          <li>Creep&ndash;fatigue interaction in nickel-based superalloys</li>
+          <li>Multiscale materials modelling</li>
+          <li>High-temperature deformation of additively manufactured metals</li>
+          <li>Life prediction and damage modelling</li>
+        </ul>
 
-  <p class="links" style="margin-top:2.5rem">
-    <a href="https://scholar.google.com/citations?user=Wm7uCdcAAAAJ&amp;hl=en">Full list on Google Scholar</a>
-  </p>
+        <p>My CV may be found <a href="files/cv.pdf">here</a>.</p>
+
+        <p>
+          <strong>Contact:</strong> Research Scholar Room 4A/14, Block IV, Dept. of Applied
+          Mechanics, IIT Delhi, Hauz Khas, New Delhi 110016
+        </p>
+        <p>Email: <a href="mailto:amz228601@iitd.ac.in">amz228601@iitd.ac.in</a></p>
+        <p class="inline-links">
+          <a href="https://scholar.google.com/citations?user=Wm7uCdcAAAAJ&amp;hl=en">Google Scholar</a>
+          <a href="https://www.linkedin.com/in/santosh-shaw-a13744275/">Linkedin</a>
+          <a href="https://github.com/SKS-CP">Github</a>
+        </p>
+
+        <p class="callout">
+          Interested in the models or the data behind the papers? Everything is on
+          <a href="software.html">Software</a>.
+        </p>
+      </div>
+
+      <figure class="about-photo">
+        <img src="images/photo.jpg" alt="Santosh Kumar Shaw">
+      </figure>
+    </div>
 '''
 
-CODE = '''
-  <p class="eyebrow">Open code and data</p>
-  <h1>Code</h1>
-  <p class="lede">
-    Model implementations and the supporting data behind the papers. Everything runs on
-    MOOSE unless noted otherwise.
-  </p>
-
-  <div class="slab">
-    <h2>CFI-CPFEM</h2>
-    <a class="repo-link" href="https://github.com/SKS-CP/CFI-CPFEM">github.com/SKS-CP/CFI-CPFEM</a>
+BIO = '''
+    <h2>Bio-sketch</h2>
     <p>
-      Dislocation density-based crystal plasticity finite element model for creep–fatigue
-      interaction in single-crystal nickel superalloys, with the input decks and supporting
-      data for the accompanying paper.
+      I am a Research Scholar at the Department of Applied Mechanics, IIT Delhi, working on
+      dislocation density-based crystal plasticity modelling of creep&ndash;fatigue
+      interaction in single-crystal nickel superalloys.
     </p>
-  </div>
 
-  <ul class="links" style="margin-top:2rem">
-    <li><a href="https://github.com/SKS-CP">All repositories — github.com/SKS-CP</a></li>
-  </ul>
+    <h3>Education</h3>
+    <ul class="plain">
+      <li>Ph.D. (ongoing), Applied Mechanics, Indian Institute of Technology Delhi</li>
+      <li><em>[Add your Master's degree, department, institute and year here]</em></li>
+      <li><em>[Add your Bachelor's degree, department, institute and year here]</em></li>
+    </ul>
+
+    <h3>Research summary</h3>
+    <p>
+      My work sits between the microstructural and component scales. At the lower scale, a
+      dislocation density-based constitutive model tracks the evolution of mobile and
+      immobile dislocation populations on each slip system. At the upper scale, that model
+      is driven through creep&ndash;fatigue load cycles in a finite element setting to
+      predict where a turbine blade accumulates damage and how long it survives. The
+      implementation is built on MOOSE.
+    </p>
+
+    <h3>Skills and tools</h3>
+    <ul class="interests">
+      <li>MOOSE framework, finite element implementation of constitutive models</li>
+      <li>Crystal plasticity, continuum plasticity, damage and life prediction</li>
+      <li>C++, Python, high-performance and parallel computing</li>
+      <li>Post-processing and visualisation of large simulation datasets</li>
+    </ul>
+'''
+
+RESEARCH = '''
+    <h2>Research</h2>
+    <p>
+      My research is multiscale. The two threads below run from the microstructure of the
+      material up to the behaviour of the component it ends up in.
+    </p>
+
+    <h3>Creep&ndash;fatigue interaction in turbine blades made of nickel superalloys</h3>
+    <p>
+      Turbine blades fail where creep and fatigue act together. A dislocation
+      density-based crystal plasticity model, implemented in MOOSE, is used to identify
+      where that damage accumulates and to predict the remaining life of the blade. The
+      model is validated first at the representative volume element (RVE) level and then
+      applied at the component scale.
+    </p>
+
+    <div class="figs">
+      <figure>
+        <img src="images/blade-failure-modes.jpg" alt="Failure modes in turbine blades." loading="lazy">
+        <figcaption>Failure modes in turbine blades.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/blade-failure-locations.jpg" alt="Probable failure locations on a turbine blade." loading="lazy">
+        <figcaption>
+          Probable locations of blade failure due to creep&ndash;fatigue interaction,
+          corrosion, oxidation and other degradation mechanisms.
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="images/rve-validation.jpg" alt="RVE-level validation of the creep-fatigue model." loading="lazy">
+        <figcaption>Validation at the RVE level of creep&ndash;fatigue interaction.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/blade-failure-sites.jpg" alt="Sites where the blade generally fails." loading="lazy">
+        <figcaption>Sites where the blade generally fails.</figcaption>
+      </figure>
+    </div>
+
+    <h3>High-temperature plasticity of LPBF 316L stainless steel</h3>
+    <p>
+      How laser powder bed fusion (LPBF) 316L behaves once it is taken to temperature, and
+      how much of that behaviour is inherited from the way it was printed.
+    </p>
+    <ul class="interests">
+      <li>
+        <strong>High-temperature deformation.</strong> Systematic investigation of the
+        mechanical behaviour of LPBF-fabricated 316L stainless steel at an elevated
+        temperature of 850&nbsp;&deg;C.
+      </li>
+      <li>
+        <strong>Anisotropy and build orientation.</strong> Uniaxial tensile response
+        compared along vertical (parallel to build) and horizontal (perpendicular to build)
+        orientations, to isolate the effect of build direction on mechanical performance.
+      </li>
+      <li>
+        <strong>Strain-rate sensitivity.</strong> Response across multiple strain rates,
+        revealing a transition from strain softening at lower rates to strain hardening at
+        higher rates.
+      </li>
+      <li>
+        <strong>Microstructural mechanisms.</strong> Deformation shifts from dislocation
+        slip and twinning at room temperature to dynamic recrystallisation at elevated
+        temperature.
+      </li>
+    </ul>
+
+    <div class="figs">
+      <figure>
+        <img src="images/lpbf-01.jpg" alt="Microstructure of LPBF 316L stainless steel." loading="lazy">
+        <figcaption>LPBF 316L microstructure.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/lpbf-02.jpg" alt="Tensile response at 850 degrees Celsius across strain rates." loading="lazy">
+        <figcaption>Tensile response at 850&nbsp;&deg;C across strain rates.</figcaption>
+      </figure>
+      <figure>
+        <img src="images/lpbf-03.jpg" alt="Vertical versus horizontal build orientation." loading="lazy">
+        <figcaption>Vertical vs. horizontal build orientation.</figcaption>
+      </figure>
+    </div>
+
+    <p>
+      Full paper:
+      <a href="https://doi.org/10.1016/j.addma.2026.105115">Orientation and strain-rate
+      effects on high-temperature plasticity of 316L stainless steel fabricated by laser
+      powder bed fusion</a>.
+    </p>
+'''
+
+PUBLICATIONS = '''
+    <h2>Publications</h2>
+
+    <ol class="pubs">
+      <li>
+        <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=Wm7uCdcAAAAJ&amp;citation_for_view=Wm7uCdcAAAAJ:u5HHmVD_uO8C">Orientation
+        and Strain-Rate Effects on High-Temperature Plasticity of 316 L Stainless Steel
+        Fabricated by Laser Powder Bed Fusion</a>, <em>Additive Manufacturing</em>.
+        [<a href="https://doi.org/10.1016/j.addma.2026.105115">https://doi.org/10.1016/j.addma.2026.105115</a>]
+      </li>
+      <li>
+        <a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=Wm7uCdcAAAAJ&amp;citation_for_view=Wm7uCdcAAAAJ:d1gkVwhDpl0C">Studying
+        Creep-Fatigue Interaction of Nickel-Based Superalloys using Crystal Plasticity and
+        Entropy-Based Life Prediction Model</a>, preprint.
+        [<a href="https://arxiv.org/abs/2605.23342">https://arxiv.org/abs/2605.23342</a>]
+      </li>
+    </ol>
+
+    <p>
+      A complete and up-to-date list is available on
+      <a href="https://scholar.google.com/citations?user=Wm7uCdcAAAAJ&amp;hl=en">Google Scholar</a>.
+    </p>
 '''
 
 TEACHING = '''
-  <p class="eyebrow">IIT Delhi</p>
-  <h1>Teaching</h1>
-  <p class="lede">
-    Teaching assistantship: facilitated learning, graded assignments and supported faculty
-    across the following undergraduate and postgraduate courses.
-  </p>
+    <h2>Teaching</h2>
+    <p>
+      <strong>Teaching Assistantship:</strong> facilitated learning, graded assignments and
+      supported faculty across the following undergraduate and postgraduate courses.
+    </p>
 
-  <ul class="courses">
-    <li><span class="code">APL410</span><span class="name">Multiscale Modelling</span></li>
-    <li><span class="code">AML8200</span><span class="name">Plasticity</span></li>
-    <li><span class="code">APL380</span><span class="name">Biomechanics</span></li>
-    <li><span class="code">APL103</span><span class="name">Experimental Methods</span></li>
-    <li><span class="code">APL100</span><span class="name">Engineering Mechanics</span></li>
-  </ul>
+    <ol class="courses">
+      <li><span class="code">APL410</span> &mdash; Multiscale Modelling</li>
+      <li><span class="code">AML8200</span> &mdash; Plasticity</li>
+      <li><span class="code">APL380</span> &mdash; Biomechanics</li>
+      <li><span class="code">APL103</span> &mdash; Experimental Methods</li>
+      <li><span class="code">APL100</span> &mdash; Engineering Mechanics</li>
+    </ol>
+'''
+
+SOFTWARE = '''
+    <h2>Software</h2>
+    <p>
+      Model implementations and the supporting data behind the papers are released openly.
+      Everything runs on the MOOSE framework unless noted otherwise.
+    </p>
+
+    <h3>CFI-CPFEM</h3>
+    <p>
+      Dislocation density-based crystal plasticity finite element model for
+      creep&ndash;fatigue interaction in single-crystal nickel superalloys, with the input
+      decks and supporting data for the accompanying paper.
+    </p>
+    <p><a href="https://github.com/SKS-CP/CFI-CPFEM">https://github.com/SKS-CP/CFI-CPFEM</a></p>
+
+    <p>
+      All repositories:
+      <a href="https://github.com/SKS-CP">https://github.com/SKS-CP</a>
+    </p>
 '''
 
 CONTACT = '''
-  <p class="eyebrow">Get in touch</p>
-  <h1>Contact</h1>
-  <p class="lede">
-    Happy to hear about collaborations, questions on the models, or anything
-    creep–fatigue related.
-  </p>
+    <h2>Contact</h2>
 
-  <ul class="detail">
-    <li>
-      <span class="k">Email</span>
-      <span class="v"><a href="mailto:amz228601@iitd.ac.in">amz228601@iitd.ac.in</a></span>
-    </li>
-    <li>
-      <span class="k">Phone</span>
-      <span class="v"><a href="tel:+917001931050">+91 70019 31050</a></span>
-    </li>
-    <li>
-      <span class="k">Office</span>
-      <span class="v">
-        <span>Research Scholar Room 4A/14, Block IV</span>
-        <span>Dept. of Applied Mechanics, IIT Delhi</span>
-        <span>New Delhi 110016, India</span>
-      </span>
-    </li>
-    <li>
-      <span class="k">Elsewhere</span>
-      <span class="v">
-        <span><a href="https://scholar.google.com/citations?user=Wm7uCdcAAAAJ&amp;hl=en">Google Scholar</a></span>
-        <span><a href="https://www.linkedin.com/in/santosh-shaw-a13744275/">LinkedIn</a></span>
-        <span><a href="https://github.com/SKS-CP">GitHub</a></span>
-      </span>
-    </li>
-  </ul>
+    <p>Research Scholar Room 4A/14, Block IV</p>
+    <p>Dept. of Applied Mechanics, IIT Delhi</p>
+    <p>Hauz Khas, New Delhi 110016, India.</p>
+    <p>Email: <a href="mailto:amz228601@iitd.ac.in">amz228601@iitd.ac.in</a></p>
+    <p>Contact: <a href="tel:+917001931050">+91-7001931050</a></p>
 
-  <iframe class="map" title="Map of the Department of Applied Mechanics, IIT Delhi" loading="lazy"
-    src="https://www.openstreetmap.org/export/embed.html?bbox=77.1877%2C28.5444%2C77.1957%2C28.5484&amp;layer=mapnik&amp;marker=28.5463655%2C77.1917207"></iframe>
-  <p class="links" style="margin-top:.9rem">
-    <a href="https://www.openstreetmap.org/?mlat=28.5463655&amp;mlon=77.1917207#map=17/28.54637/77.19172">Open larger map</a>
-  </p>
+    <p class="inline-links">
+      <a href="https://scholar.google.com/citations?user=Wm7uCdcAAAAJ&amp;hl=en">Google Scholar</a>
+      <a href="https://www.linkedin.com/in/santosh-shaw-a13744275/">Linkedin</a>
+      <a href="https://github.com/SKS-CP">Github</a>
+    </p>
+
+    <iframe class="map" title="Map of the Department of Applied Mechanics, IIT Delhi" loading="lazy"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=77.1877%2C28.5444%2C77.1957%2C28.5484&amp;layer=mapnik&amp;marker=28.5463655%2C77.1917207"></iframe>
+    <p><a href="https://www.openstreetmap.org/?mlat=28.5463655&amp;mlon=77.1917207#map=17/28.54637/77.19172">Open larger map</a></p>
 '''
 
 PAGES = [
+    ("index.html", "Santosh Kumar Shaw — Applied Mechanics, IIT Delhi",
+     "Research Scholar at the Department of Applied Mechanics, IIT Delhi, working on "
+     "crystal plasticity and creep-fatigue interaction in nickel superalloys.", HOME),
+    ("bio-sketch.html", "Bio-sketch — Santosh Kumar Shaw",
+     "Education, research summary and technical skills.", BIO),
+    ("research.html", "Research — Santosh Kumar Shaw",
+     "Creep-fatigue interaction in nickel superalloy turbine blades and high-temperature "
+     "plasticity of LPBF 316L stainless steel.", RESEARCH),
     ("publications.html", "Publications — Santosh Kumar Shaw",
-     "Journal articles and preprints by Santosh Kumar Shaw on crystal plasticity, "
-     "creep-fatigue and additively manufactured metals.", PUBLICATIONS),
-    ("code.html", "Code — Santosh Kumar Shaw",
-     "Open-source crystal plasticity finite element models and supporting data.", CODE),
+     "Journal articles and preprints.", PUBLICATIONS),
     ("teaching.html", "Teaching — Santosh Kumar Shaw",
-     "Courses taught as a teaching assistant at IIT Delhi.", TEACHING),
+     "Courses supported as a teaching assistant at IIT Delhi.", TEACHING),
+    ("software.html", "Software — Santosh Kumar Shaw",
+     "Open crystal plasticity finite element models and supporting data.", SOFTWARE),
     ("contact.html", "Contact — Santosh Kumar Shaw",
-     "Contact details and office address at the Department of Applied Mechanics, IIT Delhi.",
+     "Office address, email and phone at the Department of Applied Mechanics, IIT Delhi.",
      CONTACT),
 ]
 
