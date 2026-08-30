@@ -5,14 +5,15 @@
    ========================================================================== */
 
 :root {
-  --bar:      #1c1c1c;   /* top navigation */
-  --bar-hi:   #333333;
-  --banner:   #105d8f;   /* blue title band */
-  --text:     #1c1c1c;
-  --muted:    #5f6368;
-  --line:     #dadce0;
-  --link:     #cc4331;   /* link red */
-  --note:     #741b47;   /* bold italic note */
+  --bar:      #10151a;   /* top navigation - cool near-black */
+  --bar-hi:   #2b333b;
+  --banner:   #0d4f6c;   /* deep petrol blue title band */
+  --text:     #1b1f23;
+  --muted:    #5b6469;
+  --line:     #dde0e2;
+  --link:     #a8481f;   /* burnt sienna */
+  --link-hover: #6f2d10;
+  --note:     #7a3410;   /* bold italic note */
   --wrap:     1122px;   /* 1082px of content once padding is removed */
   --font: Roboto, Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
@@ -30,7 +31,7 @@ body {
 }
 
 a { color: var(--link); }
-a:hover { color: var(--note); }
+a:hover { color: var(--link-hover); }
 
 :focus-visible { outline: 2px solid var(--banner); outline-offset: 2px; }
 
