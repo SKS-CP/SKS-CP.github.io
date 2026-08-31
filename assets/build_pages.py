@@ -98,8 +98,7 @@ HOME = '''
           research focuses on crystal plasticity, finite element analysis and
           creep&ndash;fatigue interaction. I work on decoding the complex mechanics of
           nickel-based superalloys using advanced frameworks such as MOOSE, to engineer a
-          stronger and more resilient future. My work is multiscale, and the aim is to
-          bridge the gap between the two scales.
+          stronger and more resilient future. My research focuses on multiscale modelling, linking physics across spatial and temporal scales to simulate systems that no single scale can capture alone.
         </p>
 
         <p>My current research interests include problems in the following areas:</p>
@@ -149,8 +148,8 @@ BIO = '''
     <h3>Education</h3>
     <ul class="plain">
       <li>Ph.D. (ongoing), Applied Mechanics, Indian Institute of Technology Delhi</li>
-      <li><em>[Add your Master's degree, department, institute and year here]</em></li>
-      <li><em>[Add your Bachelor's degree, department, institute and year here]</em></li>
+      <li><em>[Master of Technology (M.Tech), Material and Metallurgical Engineering, Jadavpur University]</em></li>
+      <li><em>[Bechlor of Technology (B.Tech), West Bengal University of Technology (WBUT or MAKAUT)]</em></li>
     </ul>
 
     <h3>Research summary</h3>
