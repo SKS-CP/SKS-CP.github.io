@@ -3,7 +3,8 @@ import json
 import os
 import re
 
-OUT = "/home/claude/site2"
+# Repository root: this script lives in <root>/assets/
+OUT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 NAV = [
     ("index.html", "Home"),
@@ -98,7 +99,9 @@ HOME = '''
           research focuses on crystal plasticity, finite element analysis and
           creep&ndash;fatigue interaction. I work on decoding the complex mechanics of
           nickel-based superalloys using advanced frameworks such as MOOSE, to engineer a
-          stronger and more resilient future. My research focuses on multiscale modelling, linking physics across spatial and temporal scales to simulate systems that no single scale can capture alone.
+          stronger and more resilient future. The work is multiscale, linking physics
+          across spatial and temporal scales to simulate systems that no single scale
+          can capture alone.
         </p>
 
         <p>My current research interests include problems in the following areas:</p>
@@ -132,8 +135,42 @@ HOME = '''
       </div>
 
       <figure class="about-photo">
-        <img src="images/photo.jpg" alt="Santosh Kumar Shaw">
+        <img src="images/photo.png" alt="Santosh Kumar Shaw">
       </figure>
+    </div>
+
+    <div class="band">
+      <h2>What I work on</h2>
+      <div class="cards">
+
+        <div class="card">
+          <h3>Creep&ndash;fatigue in turbine blades</h3>
+          <p>
+            A dislocation density-based crystal plasticity model, run in MOOSE, that finds
+            where damage accumulates in a nickel superalloy blade and how long it survives.
+          </p>
+          <a class="more" href="research.html">See the research</a>
+        </div>
+
+        <div class="card">
+          <h3>High-temperature plasticity of printed steel</h3>
+          <p>
+            How LPBF 316L behaves at 850&nbsp;&deg;C, and how much of that behaviour is
+            inherited from the direction it was printed in.
+          </p>
+          <a class="more" href="publications.html">Read the paper</a>
+        </div>
+
+        <div class="card">
+          <h3>Open models and data</h3>
+          <p>
+            The CFI-CPFEM implementation and the input decks behind the papers are public,
+            so the results can be reproduced.
+          </p>
+          <a class="more" href="software.html">Browse the code</a>
+        </div>
+
+      </div>
     </div>
 '''
 
@@ -148,8 +185,9 @@ BIO = '''
     <h3>Education</h3>
     <ul class="plain">
       <li>Ph.D. (ongoing), Applied Mechanics, Indian Institute of Technology Delhi</li>
-      <li><em>[Master of Technology (M.Tech), Material and Metallurgical Engineering, Jadavpur University]</em></li>
-      <li><em>[Bechlor of Technology (B.Tech), West Bengal University of Technology (WBUT or MAKAUT)]</em></li>
+      <li>M.Tech, Materials and Metallurgical Engineering, Jadavpur University</li>
+      <li>B.Tech, Mechanical Engineering, Maulana Abul Kalam Azad University of
+          Technology (MAKAUT, formerly WBUT), West Bengal</li>
     </ul>
 
     <h3>Research summary</h3>
@@ -282,6 +320,19 @@ PUBLICATIONS = '''
       A complete and up-to-date list is available on
       <a href="https://scholar.google.com/citations?user=Wm7uCdcAAAAJ&amp;hl=en">Google Scholar</a>.
     </p>
+
+    <h2 style="margin-top:36px">Conference presentations</h2>
+
+    <ol class="pubs">
+      <li>
+        S. K. Shaw, R. Paliwal, S. Chatterjee, A. Alankar.
+        <em>Modeling of creep&ndash;fatigue interaction and life prediction of a turbine
+        blade made of single-crystal nickel superalloys</em>.
+        17th World Congress on Computational Mechanics (WCCM) and 10th European
+        Congress on Computational Methods in Applied Sciences and Engineering
+        (ECCOMAS), Munich, Germany, 22 July 2026.
+      </li>
+    </ol>
 '''
 
 TEACHING = '''
