@@ -135,7 +135,7 @@ HOME = '''
       </div>
 
       <figure class="about-photo">
-        <img src="images/photo.png" alt="Santosh Kumar Shaw">
+        <img src="images/photo.jpg" alt="Santosh Kumar Shaw">
       </figure>
     </div>
 
